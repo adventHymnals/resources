@@ -14,8 +14,8 @@ yq e   '. | keys' hymnals.yaml | while read -r line ; do     # get all keys(hymn
     fi
 done
 
-find . -name "*.md" | xargs sed -i "s/^Navigation:/toc:/g"
-find . -name "*.qmd" | xargs sed -i "s/^Navigation:/toc:/g"
+find . -name "*.md" | xargs sed -i "s/^Navigation:/toc:/gi"
+find . -name "*.qmd" | xargs sed -i "s/^Navigation:/toc:/gi"
 
 find . -wholename "*/[0-9][0-9][0-9][0-9]\-[0-9][0-9]\-[0-9][0-9]-*.qmd" -or -wholename "*/[0-9][0-9][0-9][0-9]\-[0-9][0-9]\-[0-9][0-9]-*.md" | while read -r line ; do 
     newPath=$( echo $line | sed -e 's|/[0-9][0-9][0-9][0-9]\-[0-9][0-9]\-[0-9][0-9]-|/|g' )
@@ -42,7 +42,7 @@ done
 
 
 find . -wholename "*/chapter.md"  | while read -r line ; do 
-    newPath=$( echo $line | sed -e 's|/chapter\.md|/index.md' ) 
+    newPath=$( echo $line | sed -e 's|/chapter\.md|/index.md|' ) 
     mv "$line" "$newPath"
 done
 
