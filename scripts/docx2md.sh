@@ -53,4 +53,5 @@ mkdir -p "$1"
 
 cd "$1"
 #pandoc -f docx -t markdown  --extract-media="." -o "README.md" "../$1.docx"
-pandoc -f docx -t gfm  --extract-media="." -o "README.md" "../$1.docx"
+# https://stackoverflow.com/questions/62967265/word-to-markdown-via-pandoc-prevent-line-breaks-in-paragraphs
+pandoc --wrap=none -f docx -t gfm  --extract-media="." -o "README.md" "../$1.docx"
